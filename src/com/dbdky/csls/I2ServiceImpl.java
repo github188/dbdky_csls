@@ -8,37 +8,30 @@ import com.dbdky.csls.methodutil.*;
 @WebService(endpointInterface = "com.dbdky.csls.I2Service")
 public class I2ServiceImpl implements I2Service {
 	public String uploadCACHeartbeatInfo(String strXmlParams) {
-		//TODO:
 		return UploadHeartbeatInfoImpl.transfer(strXmlParams);
 	}
 	
 	public String uploadCACData(String strXmlParams) {
-		//TODO:
-		return new String("uploadCACData");
+		return UploadCACDataImpl.transfer(strXmlParams);
 	}
 	
 	public String uploadCACConfig(String strXmlParams) {
-		//TODO:
-		return new String("uploadCACConfig");
+		return UploadCACConfigImpl.transfer(strXmlParams);
 	}
 	
 	public String downloadCAGCtrl(String strXmlParams) {
-		//TODO:
-		return new String("downloadCAGCtrl");
+		return DownloadCAGCtrlImpl.transfer(strXmlParams);
 	}
 	
 	public String downloadCACLatestVersion(String strXmlParams) {
-		//TODO:
-		return new String("downloadCACLatestVersion");
+		return DownloadCACLatestVersionImpl.transfer(strXmlParams);
 	}
 	
 	public String downloadCACHistoryVersion(String strXmlParams) {
-		//TODO:
-		return new String("downloadCACHistoryVersion");
+		return DownloadCACHistoryVersionImpl.transfer(strXmlParams);
 	}
 	
 	public String downloadCACUpdateFile(String strXmlParams) {
-		//TODO:
-		return new String("downloadCACUpdateFile");
+		return DownloadCACUpdateFileImpl.transfer(strXmlParams);
 	}
 }

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2011 (http://www.altova.com) by kevin (neuseeker) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:element name="request">
+		<xs:annotation>
+			<xs:documentation>Comment describing your root element</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="cac">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="ip"/>
+							<xs:element name="curtime"/>
+							<xs:element name="operationtemperature"/>
+						</xs:sequence>
+						<xs:attribute name="id"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="sensors">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="sensor" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="status"/>
+										<xs:element name="operationtemperature"/>
+									</xs:sequence>
+									<xs:attribute name="id"/>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>
