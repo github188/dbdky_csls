@@ -1,6 +1,7 @@
 package com.dbdky.csls.methodutil;
 
 import java.util.List;
+import com.dbdky.csls.ConfigCenter;
 
 public class TransmitterFactory {
 	public static TransmitterFactory getInstance() {
@@ -12,12 +13,23 @@ public class TransmitterFactory {
 	}
 	
 	public Transmitter getTransmitter(String remoteIP, String remotePort) {
-		//TODO:
+	
+		for (Transmitter trans : transmitter_list_) {
+			if ((trans.getRemoteIPAsString().equals(remoteIP))
+					&& (trans.getRemotePortAsString().equals(remotePort))) {
+				return trans;
+			}
+		}
 		return defaultTransmitter_;
 	}
 	
 	public Transmitter getTransmitter() {
-		//TODO:
+		if (null == defaultTransmitter_) {
+			defaultTransmitter_ = new Transmitter(ConfigCenter.getInstance().getProxyIP(),
+					ConfigCenter.getInstance().getProxyPort());
+			defaultTransmitter_.start();
+		}
+		
 		return defaultTransmitter_;
 	}
 	
