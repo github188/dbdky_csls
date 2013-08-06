@@ -19,7 +19,7 @@ public class Transmitter {
 	private void setRemoteIP(String remoteIP) {
 		if (remoteIP.length() < 8) {
 			// 0.0.0.0
-			remoteIP_ = "127.0.0.1";
+			remoteIP_ = "172.168.1.239";
 		}
 		else {
 			remoteIP_ = remoteIP;
@@ -36,12 +36,79 @@ public class Transmitter {
 	}
 	
 	public boolean transmit(String str) {
-		//TODO:
+		boolean retVal = false;
+		
+		try {
+			String readline;
+			
+			os_ = new PrintWriter(socket_.getOutputStream());
+			is_ = new BufferedReader(new InputStreamReader(socket_.getInputStream()));
+			
+			os_.println(str);
+			os_.flush();
+			
+			//readline = is_.readLine();
+			
+			//int ret = Integer.parseInt(readline);
+			
+			
+			//retVal = (ret == 0) ? true : false;
+			
+		} catch (Exception e) {
+			System.out.println("11Error:" + e);
+		} finally {
+			os_.close();
+			try {
+				is_.close();
+			} catch (IOException ex) {
+			}
+		}
+		
+		
+		return retVal;
+	}
+	
+	public String getRemoteIPAsString() {
+		return remoteIP_;
+	}
+	
+	public String getRemotePortAsString() {
+		String strPort = "" + remotePort_;
+		return strPort;
+	}
+	
+	public boolean start() {
+		if ((null != socket_) && socket_.isConnected()) {
+			return true;
+		}
+		
+		if (null == socket_) {
+			try {
+				socket_ = new Socket(remoteIP_, remotePort_);
+			} catch (Exception e) {
+				System.out.println("Can't create socket:" + e);
+				return false;
+			}
+		}
 		return true;
+	}
+	
+	public void stop() {
+		try {
+			os_.close();
+			is_.close();
+			socket_.close();
+		} catch (Exception e) {
+			System.out.println("Error:" + e);
+		}
 	}
 	
 	private String remoteIP_;
 	private int remotePort_;
 	
 	private Socket socket_;
+	private BufferedReader sin_;
+	private PrintWriter os_;
+	private BufferedReader is_;
+	
 }
